@@ -1,0 +1,4 @@
+black           # Python formatter
+Jinja2          # Jinja2 filters
+pycodestyle     # Python linter implementing PEP8. Replaces the old pep8 package
+pylint          # Python linter implementing PEP8 and performing static analysis

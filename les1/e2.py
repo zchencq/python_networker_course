@@ -19,4 +19,3 @@ try:
     print("-" * 60)
 except ValueError:
     print("Invalid IP")
-
