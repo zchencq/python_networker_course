@@ -3,3 +3,5 @@ sudo: enabled
 
 install:
   - pip list
+script:
+    - pytest
