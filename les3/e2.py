@@ -9,8 +9,23 @@ Keep track of whether you have found both the Default Gateway and the Arista3 sw
 """
 from __future__ import print_function, unicode_literals
 
+my_arp_list = []
+
 f = open("/home/zhen/pythoncourse/les3/show_arp.txt")
-print(f.read())
-my_output = f.read()
-for line in f.read()
-    line = 
+found_entries = 0
+
+for line in f.readlines(): 
+        if line.split()[0] == "Internet":
+           ip_addr = line.split()[1]
+           mac_addr = line.split()[3]
+           arp_entry = (ip_addr, mac_addr)
+           my_arp_list.append(arp_entry)
+           if ip_addr == "10.220.88.1":
+              print("Default gateway IP/Mac: " + ip_addr + "/" + mac_addr)
+              found_entries += 1
+           elif ip_addr == "10.220.88.30":
+              print("Arista3 IP/Mac is: " + ip_addr + "/" + mac_addr)
+              found_entries += 1
+        if found_entries == 2:
+           break 
+print(my_arp_list)       
