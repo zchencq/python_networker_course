@@ -1,0 +1,12 @@
+---
+interfaces:
+  Ethernet1:
+    mode: access
+    access_vlan: 10
+  Ethernet2:
+    mode: access
+    access_vlan: 20
+  Ethernet3:
+    mode: trunk
+    native_vlan: 1
+    trunk_vlans: [10, 20]

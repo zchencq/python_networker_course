@@ -1,0 +1,36 @@
+{# interface Ethernet1
+  switchport mode access
+  switchport access vlan 10
+interface Ethernet2
+  switchport mode access
+  switchport access vlan 20
+interface Ethernet3
+  switchport mode trunk
+  switchport trunk native vlan 1
+  switchport trunk allowed vlan all
+
+The following should all be variables in your Jinja template 
+(the names may be different than below, but they should be variabilized 
+and not be hard-coded in your template). 
+
+interface_name
+switchport_mode
+access_vlan
+native_vlan
+trunk_vlans #}
+{%- for interface, value in interfaces.items() %}
+interface {{ interface }}
+  {%- if value.mode == 'access' %}
+  switchport mode access
+  switchport access vlan {{ value.access_vlan }}
+  {%- elif value.mode == 'trunk' %}
+  switchport mode trunk
+  switchport trunk native vlan {{ value.native_vlan }}
+  {%- if value.trunk_vlans == 'all'%}
+  switchport trunk allowed vlan all
+  {%- else %}
+  switchport trunk allowed vlan {% for item in value.trunk_vlans %} {%- if loop.last  %}{{ item }}{%- else %}{{ item }},{%- endif %}
+  {%- endfor %}
+  {%- endif %} 
+  {%- endif %}
+{%- endfor %}
