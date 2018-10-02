@@ -43,11 +43,7 @@ from __future__ import print_function, unicode_literals
 import jinja2
 import yaml
 
-'''
-{%- for key, value in interfaces %}
-interface {{ key }}
-{%- endfor %}
-'''
+
 #read variables from yaml 
 filename = "/home/zhen/pythoncourse/les7/4.yml"
 with open(filename) as f:
